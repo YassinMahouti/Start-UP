@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book, Author, BookInstance, Genre
+from .forms import CreateUserForm
 
 
 def say_hello(request):
@@ -30,3 +31,21 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+
+def login(request):
+    # form = UserCreationForm()
+    context = {}
+    return render(request, 'login.html')
+
+
+def registration(request):
+    form = CreateUserForm()
+    # Handle user registration (Unique Username, hash password ...)
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'registration.html', context)
