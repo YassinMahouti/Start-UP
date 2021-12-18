@@ -10,5 +10,10 @@
     <li><strong>Copies:</strong> {{ num_instances }}</li>
     <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
     <li><strong>Authors:</strong> {{ num_authors }}</li>
+    
   </ul>
+  <span>Hello, {{request.user}}</span>
+  <span><a href = "{%url 'logout' %}">Logout</a></span>
+
 {% endblock %}
+

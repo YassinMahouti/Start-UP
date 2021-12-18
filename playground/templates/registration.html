@@ -29,7 +29,7 @@
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                border-radius: 10px;
+                border-radius: 20px;
     
             }
     
@@ -108,14 +108,19 @@
                                  <input class="btn login_btn" type="submit" value="Register Account">
                                </div>
                         </form>
+
+                        
                     </div>
+                    {{form.errors}}
+
                     <div class="mt-4">
                         <div class="d-flex justify-content-center links">
-                            Already have an account? <a href="{% url 'login.views' %}" class="ml-2">Sign Up</a>
+                            Don't have an account? <a href="{% url 'login' %}" class="ml-2">Sign In</a>
                         </div>
                 
                     </div>
     
+            
 
                 </div>
             </div>
