@@ -64,6 +64,8 @@ def registrationPage(request):
             user = form.cleaned_data.get('username')
             messages.success(request, user + ' registered successfully')
             return redirect('login')
+        else:
+            messages.info(request, 'Something went wrong, please try again')
 
     context = {'form': form}
     return render(request, 'registration.html', context)

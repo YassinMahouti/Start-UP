@@ -9,66 +9,79 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	<script src="{% static 'css/login.css' %}"></script>
 
-	<script src="{% static 'js/loginreg.js' %}"></script>   	
+	<style>
+        #messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+
+        </style>
+
 </head>
 <body>
+	<main class="main">
+		<div class="wrapper">
+			<div class="card">
+				<div class="title">
+					<h1 class="title title-large">Sign In</h1>
+					<p class="title title-subs">New user? <span><a href="{% url 'registration' %}" class="ml-2">Create an account</a></span></p>
+				</div>
+				<form method="POST" action="" class="form">
+					{% csrf_token %}
+					<div class="form-group">
+						<input type="text" name="username" class="input-field" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" placeholder="Password" class="form-control" >
+					</div>
 
-	<div class="container" id="container">
-		<div class="form-container sign-up-container">
-			<form method ="POST" action="">
-				{% csrf_token %}
-				<h1>Create Account</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-				</div>
-				<span>or use your email for registration</span>
-				<input type="text" placeholder="Name" />
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
-				<button>Sign Up</button>
-			</form>
-		</div>
-		<div class="form-container sign-in-container">
-			<form method = "POST" action=''>
-				{% csrf_token %}
-				<h1>Sign in</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-				</div>
-				<span>or use your account</span>
-				<input type="text" placeholder="Username" name="username" class="form-control" />
-				<input type="password" placeholder="Password" name="password" class="form-control" />
-				<a href="#">Forgot your password?</a>
-				<div class="d-flex justify-content-center mt-3 login_container">
-					<input class="btn login_btn" type="submit" value="Login">
-				</div>
-			</form>
-		</div>
-        
-	
+					{% for message in messages %}
+					<p id="messages">{{message}}</p>
+					{%endfor%}
+				
+					<div class="form-group">
+						<a href="#" class="linktext">Forgot Password</a>
+						<input type="submit" name="submit" class="input-submit" value="Login">
+					</div>
+					
+					
+				</form>
 
-		<div class="overlay-container">
-			<div class="overlay">
-				<div class="overlay-panel overlay-left">
-					<h1>Welcome Back!</h1>
-					<p>To keep connected with us please login with your personal info</p>
-					<button class="ghost" id="signIn">Sign In</button>
+				<div class="line">
+
+				
+
+					<span class="line-bar"></span>
+					<span class="line-text">Or</span>
+					<span class="line-bar"></span>
 				</div>
-				<div class="overlay-panel overlay-right">
-					<h1>Hello, Friend!</h1>
-					<p>Enter your personal details and start journey with us</p>
-					<button class="ghost" id="signUp">Sign Up</button>
+				<div class="method">
+					<div class="method-item">
+						<a href="#" class="btn-action">
+							<i class="icons icons-google fab fa-google"></i>
+							<span>Sign in with Google</span>
+						</a>
+					</div>
+					<div class="method-item">
+						<a href="#" class="btn-action">
+							<i class="icons icons-facebook fab fa-facebook"></i>
+							<span>Sign in with Facebook</span>
+						</a>
+					</div>
+					<div class="method-item">
+						<a href="#" class="btn-action">
+							<i class="icons icons-apple fab fa-apple"></i>
+							<span>Sign in with Apple</span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-
-	</body>
+	</main></body>
 
 </html>
