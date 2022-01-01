@@ -62,7 +62,7 @@ ROOT_URLCONF = 'StartUP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +135,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51K8SDLCYYBi69bQMCvO5ZU25z7TFYLL6NqIDFiXTaCxvCyPjPTmv1qf8UOOodSUBx3ZBpJFnV4WtpE4O7uYCYxgP006TUyb70T'
+STRIPE_SECRET_KEY = 'sk_test_51K8SDLCYYBi69bQM8GiOIVqvBsHEuFH4acyhg34yoPihmSH8A8TtvokiOKwy1fPFYG6eiCxq9w2VMh3Mzg3DM6OO00T85I1oSd'
+STRIPE_PRICE_ID = 'price_1K8UrPCYYBi69bQMLmgOHyaJ'
+STRIPE_ENDPOINT_SECRET = 'whsec_CQAJzL9Dgr9Fqeh8bArFZOCx8F7WKYXW'

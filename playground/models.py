@@ -2,7 +2,7 @@ from django.db import models
 # Used to generate URLs by reversing the URL patterns
 from django.urls import reverse
 import uuid  # Required for unique book instances
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -93,3 +93,12 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+
+
+class StripeCustomer(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    stripeCustomerId = models.CharField(max_length=255)
+    stripeSubscriptionId = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.user.username
