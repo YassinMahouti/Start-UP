@@ -13,7 +13,11 @@ urlpatterns = [
     path('subscriptions/', views.subsPage, name='subshome'),
     path('config/', views.stripe_config),
     path('create-checkout-session/', views.create_checkout_session),
+    path('create-checkout-session-silver/',
+         views.create_checkout_session_silver),
     path('success/', views.success),
+    path('create-checkout-session-bronze/',
+         views.create_checkout_session_bronze),
     path('cancel/', views.cancel),
     path('webhook/', views.stripe_webhook),
 ]

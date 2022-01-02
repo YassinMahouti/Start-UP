@@ -24,6 +24,47 @@
   </head>
   <body>
 
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="{% url 'index' %}" class="logo">
+              <h4>Start<span>UP</span></h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}">About Us</a></li>
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Services</a></li>
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Portfolio</a></li>
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Blog</a></li> 
+              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Message Us</a></li> 
+              {% if user.is_authenticated %}
+              <li class="scroll-to-section"><a href="{% url 'logout' %}">Logout</a></li> 
+              {%endif%}
+              {% if not user.is_authenticated %}
+              <li class="scroll-to-section"><a href="{% url 'login' %}">Your account</a></li> 
+
+              {%endif%}
+
+              <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'subshome' %}">Subscribe Now</a></div></li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+
     <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
       <div class="container">
         <div class="row">
@@ -43,7 +84,46 @@
                         </div>
                       </div>
                     {% else %}
-                      <button type="submit" class="btn btn-primary" id="submitBtn">Subscribe</button>
+
+                    <div class="card-deck">
+                      <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <button type="submit" class="btn btn-primary" id="BronzeBtn">Subscribe</button>
+
+                        </div>
+                        <div class="card-footer">
+                          <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                          <button type="submit" class="btn btn-primary" id="SilverBtn">Subscribe</button>
+
+                        </div>
+                        <div class="card-footer">
+                          <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                          <button type="submit" class="btn btn-primary" id="goldBtn">Subscribe</button>
+
+                        </div>
+                        <div class="card-footer">
+                          <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                      </div>
+                    </div>
+
                     {% endif %}
                   </div>
                 </div>

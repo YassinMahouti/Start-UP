@@ -13,7 +13,11 @@ fetch("/playground/config/")
 
   // new
   // Event handler
-  let submitBtn = document.querySelector("#submitBtn");
+  let submitBtn = document.querySelector("#goldBtn");
+  let submitBtnSilver = document.querySelector("#SilverBtn");
+  let submitBtnBronze = document.querySelector("#BronzeBtn");
+
+
   if (submitBtn !== null) {
     submitBtn.addEventListener("click", () => {
     // Get Checkout Session ID
@@ -29,4 +33,37 @@ fetch("/playground/config/")
       });
     });
   }
+
+  if (submitBtnSilver !== null) {
+    submitBtnSilver.addEventListener("click", () => {
+    // Get Checkout Session ID
+    fetch("/playground/create-checkout-session-silver/")
+      .then((result) => { return result.json(); })
+      .then((data) => {
+        console.log(data);
+        // Redirect to Stripe Checkout
+        return stripe.redirectToCheckout({sessionId: data.sessionId})
+      })
+      .then((res) => {
+        console.log(res);
+      });
+    });
+  }
+
+  if (submitBtnBronze !== null) {
+    submitBtnBronze.addEventListener("click", () => {
+    // Get Checkout Session ID
+    fetch("/playground/create-checkout-session-bronze/")
+      .then((result) => { return result.json(); })
+      .then((data) => {
+        console.log(data);
+        // Redirect to Stripe Checkout
+        return stripe.redirectToCheckout({sessionId: data.sessionId})
+      })
+      .then((res) => {
+        console.log(res);
+      });
+    });
+  }
+
 });
