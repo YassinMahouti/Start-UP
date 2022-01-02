@@ -10,8 +10,9 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/login.css' %}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-	<script src="{% static 'css/login.css' %}"></script>
-
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-space-dynamic.css' %}">
 	<style>
         #messages{
 			background-color: grey;
@@ -24,9 +25,55 @@
 
 </head>
 <body>
+	  <!-- ***** Header Area Start ***** -->
+	  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+		<div class="container">
+		  <div class="row">
+			<div class="col-12">
+			  <nav class="main-nav">
+				<!-- ***** Logo Start ***** -->
+				<a href="{% url 'index' %}" class="logo">
+				  <h4>Start<span>UP</span></h4>
+				</a>
+				<!-- ***** Logo End ***** -->
+				<!-- ***** Menu Start ***** -->
+				<ul class="nav">
+				  <li class="scroll-to-section"><a href="{% url 'index' %}" class="active">Home</a></li>
+				  <li class="scroll-to-section"><a href="{% url 'index' %}">About Us</a></li>
+				  <li class="scroll-to-section"><a href="{% url 'index' %}">Services</a></li>
+				  <li class="scroll-to-section"><a href="{% url 'index' %}">Portfolio</a></li>
+				  <li class="scroll-to-section"><a href="{% url 'index' %}">Blog</a></li> 
+				  <li class="scroll-to-section"><a href="{% url 'index' %}">Message Us</a></li>
+ 
+				  {% if not user.is_authenticated %}
+				  <li class="scroll-to-section"><a href="{% url 'login' %}">Your account</a></li> 
+	
+				  {%endif%}
+	
+				  {% if user.is_authenticated %}
+				  <li class="scroll-to-section"><div class="main-yellow-button"><a href="{% url 'subshome' %}">Subscribe</a></div></li> 
+				  <li class="scroll-to-section"><a href="{% url 'logout' %}">Logout</a></li> 
+				  {%endif%}
+				  <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'subshome' %}">Subscribe Now</a></div></li> 
+	
+	
+	
+				</ul>        
+				<a class='menu-trigger'>
+					<span>Menu</span>
+				</a>
+				<!-- ***** Menu End ***** -->
+			  </nav>
+			</div>
+		  </div>
+		</div>
+	  </header>
+	  <!-- ***** Header Area End ***** -->
 	<main class="main">
-		<div class="wrapper">
-			<div class="card">
+		<div class="signupBlock">
+
+		<div class="wrapper mx-auto">
+			<div class="card mt-5">
 				<div class="title">
 					<h1 class="title title-large">Sign In</h1>
 					<p class="title title-subs">New user? <span><a href="{% url 'registration' %}" class="ml-2">Create an account</a></span></p>
@@ -82,6 +129,7 @@
 				</div>
 			</div>
 		</div>
-	</main></body>
+	</main>
+</body>
 
 </html>

@@ -18,29 +18,8 @@ def say_hello(request):
     return render(request, 'hello.html', {'name': 'Yassin'})
 
 
-@login_required(login_url='login')
 def index(request):
-    """View function for home page of site."""
-
-    # Generate counts of some of the main objects
-    num_books = Book.objects.all().count()
-    num_instances = BookInstance.objects.all().count()
-
-    # Available books (status = 'a')
-    num_instances_available = BookInstance.objects.filter(
-        status__exact='a').count()
-
-    # The 'all()' is implied by default.
-    num_authors = Author.objects.count()
-
-    context = {
-        'num_books': num_books,
-        'num_instances': num_instances,
-        'num_instances_available': num_instances_available,
-        'num_authors': num_authors,
-    }
-
-    # Render the HTML template index.html with the data in the context variable
+    context = {}
     return render(request, 'index.html', context=context)
 
 
@@ -87,6 +66,7 @@ def registrationPage(request):
         return render(request, 'registration.html', context)
 
 
+@login_required(login_url='login')
 @csrf_exempt
 def logoutUser(request):
     logout(request)
@@ -122,6 +102,7 @@ def subsPage(request):
         return render(request, 'subshome.html')
 
 
+@login_required(login_url='login')
 @csrf_exempt
 # Handle the AJAX request
 def stripe_config(request):
@@ -130,7 +111,8 @@ def stripe_config(request):
         return JsonResponse(stripe_config, safe=False)
 
 
-@csrf_exempt
+@login_required(login_url='login')
+@ csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/'
@@ -155,15 +137,18 @@ def create_checkout_session(request):
             return JsonResponse({'error': str(e)})
 
 
+@ login_required(login_url='login')
 def success(request):
     return render(request, 'subscription/success.html')
 
 
+@ login_required(login_url='login')
 def cancel(request):
     return render(request, 'subscription/cancel.html')
 
 
-@csrf_exempt
+@login_required(login_url='login')
+@ csrf_exempt
 def stripe_webhook(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     endpoint_secret = settings.STRIPE_ENDPOINT_SECRET

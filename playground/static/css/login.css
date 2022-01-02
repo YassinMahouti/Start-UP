@@ -48,9 +48,10 @@ button {
 }
 
 .wrapper {
+  
   max-width: 28rem;
   width: 100%;
-  margin: 0 auto;
+  margin: 2 auto;
   padding: 5rem 1.5rem;
 }
 
