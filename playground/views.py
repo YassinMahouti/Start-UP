@@ -20,7 +20,27 @@ def say_hello(request):
 
 def index(request):
     context = {}
-    return render(request, 'index.html', context=context)
+    try:
+        stripe_customer = StripeCustomer.objects.get(user=request.user)
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        subscription = stripe.Subscription.retrieve(
+            stripe_customer.stripeSubscriptionId)
+        product = stripe.Product.retrieve(subscription.plan.product)
+        return render(request, 'index.html', {
+            'subscription': subscription,
+            'product': product,
+        })
+    except:
+        return render(request, 'index.html', context=context)
+
+
+@login_required(login_url='login')
+def userPage(request):
+    context = {}
+    return render(request, 'user.html', context)
+
+
+################################################################ AUTHENTICATION #################################################################
 
 
 @csrf_exempt
@@ -72,34 +92,10 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-
-@login_required(login_url='login')
-def userPage(request):
-    context = {}
-    return render(request, 'user.html', context)
+################################################################ --------------- #################################################################
 
 
-@login_required(login_url='login')
-def subsPage(request):
-    try:
-        # Retrieve the subscription & product
-        stripe_customer = StripeCustomer.objects.get(user=request.user)
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        subscription = stripe.Subscription.retrieve(
-            stripe_customer.stripeSubscriptionId)
-        product = stripe.Product.retrieve(subscription.plan.product)
-
-        # Feel free to fetch any additional data from 'subscription' or 'product'
-        # https://stripe.com/docs/api/subscriptions/object
-        # https://stripe.com/docs/api/products/object
-
-        return render(request, 'subshome.html', {
-            'subscription': subscription,
-            'product': product,
-        })
-
-    except StripeCustomer.DoesNotExist:
-        return render(request, 'subshome.html')
+################################################################ STRIPE #################################################################
 
 
 @login_required(login_url='login')
@@ -238,3 +234,57 @@ def stripe_webhook(request):
         print(user.username + ' just subscribed.')
 
     return HttpResponse(status=200)
+
+################################################################ --------------- #################################################################
+
+################################################################ Restricted subscription pages #################################################################
+
+
+@login_required(login_url='login')
+def subsPage(request):
+    try:
+        # Retrieve the subscription & product
+        stripe_customer = StripeCustomer.objects.get(user=request.user)
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        subscription = stripe.Subscription.retrieve(
+            stripe_customer.stripeSubscriptionId)
+        product = stripe.Product.retrieve(subscription.plan.product)
+
+        # Feel free to fetch any additional data from 'subscription' or 'product'
+        # https://stripe.com/docs/api/subscriptions/object
+        # https://stripe.com/docs/api/products/object
+
+        return render(request, 'subshome.html', {
+            'subscription': subscription,
+            'product': product,
+        })
+
+    except StripeCustomer.DoesNotExist:
+        return render(request, 'subshome.html')
+
+
+@login_required(login_url='login')
+@ csrf_exempt
+def prediction(request):
+    return render(request, 'predict.html')
+
+
+@login_required(login_url='login')
+@ csrf_exempt
+def predict_member(request):
+    return render(request, 'predict_member.html')
+
+
+@login_required(login_url='login')
+@ csrf_exempt
+def acccounting(request):
+    return render(request, 'accounting.html')
+
+
+@login_required(login_url='login')
+@ csrf_exempt
+def charts(request):
+    return render(request, 'charts.html')
+
+
+################################################################ --------------- #################################################################

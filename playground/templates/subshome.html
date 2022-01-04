@@ -37,12 +37,12 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}">About Us</a></li>
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Services</a></li>
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Portfolio</a></li>
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Blog</a></li> 
-              <li class="scroll-to-section"><a href="{% url 'subshome' %}">Message Us</a></li> 
+              <li class="scroll-to-section"><a href="{% url 'index' %}" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="{% url 'index' %}">About Us</a></li>
+              <li class="scroll-to-section"><a href="{% url 'index' %}">Services</a></li>
+              <li class="scroll-to-section"><a href="{% url 'index' %}">Portfolio</a></li>
+              <li class="scroll-to-section"><a href="{% url 'index' %}">Blog</a></li> 
+              <li class="scroll-to-section"><a href="{% url 'index' %}">Message Us</a></li> 
               {% if user.is_authenticated %}
               <li class="scroll-to-section"><a href="{% url 'logout' %}">Logout</a></li> 
               {%endif%}
@@ -50,6 +50,7 @@
               <li class="scroll-to-section"><a href="{% url 'login' %}">Your account</a></li> 
 
               {%endif%}
+
 
               <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'subshome' %}">Subscribe Now</a></div></li> 
             </ul>        
