@@ -56,7 +56,7 @@ https://templatemo.com/tm-562-space-dynamic
               <li class="scroll-to-section"><a href="#contact">Message Us</a></li> 
 
               <!-- ***** ***** ***** Membership navbar ***** ***** ***** ****-->
-              
+
               <li class="nav-item dropdown ">
                 <a class="scroll-to-section"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                   Member services
@@ -64,7 +64,6 @@ https://templatemo.com/tm-562-space-dynamic
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'predict' %}">restaurant prediction</a>  
                   {% if subscription.status == "active" and product.name == "Gold membership" or product.name == "Silver membership" or product.name == "Basic membership" %}
-
                   <a class="dropdown-item" href="{% url 'predictMember' %}">Accurate restaurant prediction for members</a>  
                   <a class="dropdown-item" href="{% url 'accounting' %}">Accounting</a>  
                   <a class="dropdown-item" href="{% url 'charts' %}">Charts</a>  
@@ -76,7 +75,7 @@ https://templatemo.com/tm-562-space-dynamic
                   <a class="dropdown-item disabled" href="{% url 'charts' %}">Charts</a>  
                   {%endif%}
               </div>
-              </li>
+              </li>              
               <!---------------------------------------------------------------->
 
               <!--Authentication restricted -->         

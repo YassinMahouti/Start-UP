@@ -41,8 +41,6 @@ def userPage(request):
 
 
 ################################################################ AUTHENTICATION #################################################################
-
-
 @csrf_exempt
 def loginPage(request):
     # form = UserCreationForm()
@@ -91,13 +89,10 @@ def registrationPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
-
 ################################################################ --------------- #################################################################
 
 
 ################################################################ STRIPE #################################################################
-
-
 @login_required(login_url='login')
 @csrf_exempt
 # Handle the AJAX request
@@ -195,7 +190,6 @@ def cancel(request):
     return render(request, 'subscription/cancel.html')
 
 
-@login_required(login_url='login')
 @ csrf_exempt
 def stripe_webhook(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -234,12 +228,10 @@ def stripe_webhook(request):
         print(user.username + ' just subscribed.')
 
     return HttpResponse(status=200)
-
 ################################################################ --------------- #################################################################
 
+
 ################################################################ Restricted subscription pages #################################################################
-
-
 @login_required(login_url='login')
 def subsPage(request):
     try:
@@ -285,6 +277,4 @@ def acccounting(request):
 @ csrf_exempt
 def charts(request):
     return render(request, 'charts.html')
-
-
 ################################################################ --------------- #################################################################
