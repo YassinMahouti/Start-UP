@@ -3,143 +3,144 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Django + Stripe Subscriptions</title>
+
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="{% static 'js/subsmain.js' %}"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/templatemo-space-dynamic.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/animated.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
-
+    <script type="text/javascript" src="{% static 'js/subsmain.js' %}"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" />
+        <title>Become a member!</title>
   </head>
-  <body>
+  <body class="h-full py-16 antialiased bg-primary-very-light font-sans">
+    {% if subscription.status == "active" %}
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="{% url 'index' %}" class="logo">
-              <h4>Start<span>UP</span></h4>
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="{% url 'index' %}" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="{% url 'index' %}">About Us</a></li>
-              <li class="scroll-to-section"><a href="{% url 'index' %}">Services</a></li>
-              <li class="scroll-to-section"><a href="{% url 'index' %}">Portfolio</a></li>
-              <li class="scroll-to-section"><a href="{% url 'index' %}">Blog</a></li> 
-              <li class="scroll-to-section"><a href="{% url 'index' %}">Message Us</a></li> 
-              {% if user.is_authenticated %}
-              <li class="scroll-to-section"><a href="{% url 'logout' %}">Logout</a></li> 
-              {%endif%}
-              {% if not user.is_authenticated %}
-              <li class="scroll-to-section"><a href="{% url 'login' %}">Your account</a></li> 
+    <header class="flex flex-col items-center mb-12">
+      <h2 class="text-3xl text-primary-normal  font-bold">Your subscription</h2>
+      
+    </header>
+  </article>
+  <!-- linear-gradient(hsl(236, 72%, 79%) to hsl(237, 63%, 64%)) -->
+  <article
+    class="lg:w-custom w-7/5 mb-10 px-6 py-16 lg:-mt-6 text-white text-center rounded-lg"
+    style="background-image:linear-gradient(90deg, #a3a8f0 0%, #696fdd 100%);"
+  >
+    <h5 class="font-bold text-base "> {{product.name}}</h5>
+    <h2
+      class="font-bold pb-4 mt-2 border-b border-gray-100 flex justify-center"
+    >
 
-              {%endif%}
+    <!------------------------------------------------------------USERS MEMBERSHIP---------------------------------------------------------------------->
+      <span class="text-3xl mt-6 mr-1">€</span
+      ><span class="text-6xl ">
+       {% if product.name == "Gold membership"%}
+        34.99
+      </span>
+    </h2>
+    <ul class=" text-sm font-bold">
+      <li class="pt-4 pb-4 border-b border-gray-200">1 TB Storage</li>
+      <li class="pt-4 pb-4 border-b border-gray-200">5 Users Allowed</li>
+      <li class="pt-4 pb-4 border-b border-gray-200">Send up to 10 GB</li>
+    </ul>
+  </article>
+       {%endif%}
+       {% if product.name == "Silver membership"%}
+       19.99
+      </span>
+        </h2>
+        <ul class=" text-sm font-bold">
+          <li class="pt-4 pb-4 border-b border-gray-200">1 TB Storage</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">5 Users Allowed</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">Send up to 10 GB</li>
+        </ul>
+      </article>
+      {%endif%}
+      {% if product.name == "Bronze membership"%}
+      9.99
+    </span>
+      </h2>
+      <ul class=" text-sm font-bold">
+        <li class="pt-4 pb-4 border-b border-gray-200">1 TB Storage</li>
+        <li class="pt-4 pb-4 border-b border-gray-200">5 Users Allowed</li>
+        <li class="pt-4 pb-4 border-b border-gray-200">Send up to 10 GB</li>
+      </ul>
+    </article>
+     {%endif%}
+
+    <!---------------------------------------------------------------------------------------------------------------------------------->
 
 
-              <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'subshome' %}">Subscribe Now</a></div></li> 
-            </ul>        
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
-
-    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="row">
-              <div class="col-lg-6 align-self-center">
-                <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                  <div class="container mt-5">
-                    {% if subscription.status == "active" %}
-                      <h4>Your subscription:</h4>
-                      <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ product.name }}</h5>
-                          <p class="card-text">
-                            {{ product.description }}
-                          </p>
-                        </div>
-                      </div>
-                    {% else %}
-
-                    <div class="card-deck">
-                      <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <button type="submit" class="btn btn-primary" id="BronzeBtn">Subscribe</button>
-
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                          <button type="submit" class="btn btn-primary" id="SilverBtn">Subscribe</button>
-
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                          <button type="submit" class="btn btn-primary" id="goldBtn">Subscribe</button>
-
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                      </div>
-                    </div>
-
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                  <img src="{% static 'assets/images/banner-right-image.png' %}" alt="team meeting">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
- 
+  {% else %}
+    <header class="flex flex-col items-center mb-12">
+      <h2 class="text-3xl text-primary-normal  font-bold">Our Pricing</h2>
+      
+    </header>
+    <section
+      class="flex flex-col lg:flex-row items-start items-center lg:justify-center w-full w-full lg:px-10 py-12 "
+    >
+      <article
+        class="bg-white w-4/5 lg:w-custom mb-10 lg:px-4 px-6 py-10 text-center text-primary-dark rounded-lg">
+        <h5 class="font-bold text-base">Basic membership</h5>
+        <h2 class="pb-4 flex justify-center font-bold border-b border-gray-300">
+          <span class="text-3xl mt-6 mr-1">$</span
+          ><span class="text-6xl"> 29.99</span>
+        </h2>
+        <ul class="text-sm font-bold">
+          <li class="pt-4 pb-4 border-b border-gray-300">500 GB Storage</li>
+          <li class="pt-3 pb-4 border-b border-gray-300">2 Users Allowed</li>
+          <li class="pt-4 pb-4 border-b border-gray-300">Send up to 3 GB</li>
+        </ul>
+        <button type= "submit" id="BronzeBtn"
+          class=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-md"
+          style="background-image:linear-gradient(90deg, #a3a8f0 0%, #696fdd 100%);"
+        >
+          Subscribe now !
+        </button>
+      </article>
+      <!-- linear-gradient(hsl(236, 72%, 79%) to hsl(237, 63%, 64%)) -->
+      <article
+        class="lg:w-custom w-4/5 mb-10 px-6 py-16 lg:-mt-6 text-white text-center rounded-lg"
+        style="background-image:linear-gradient(90deg, #a3a8f0 0%, #696fdd 100%);"
+      >
+        <h5 class="font-bold text-base ">Professional</h5>
+        <h2
+          class="font-bold pb-4 mt-2 border-b border-gray-100 flex justify-center"
+        >
+          <span class="text-3xl mt-6 mr-1">$</span
+          ><span class="text-6xl "> 49.99</span>
+        </h2>
+        <ul class=" text-sm font-bold">
+          <li class="pt-4 pb-4 border-b border-gray-200">1 TB Storage</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">5 Users Allowed</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">Send up to 10 GB</li>
+        </ul>
+        <button type= "submit" id="SilverBtn"
+        class=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-md"
+        style="background-image:linear-gradient(90deg, #a3a8f0 0%, #696fdd 100%);"
+      >
+      Subscribe now !
+        </button>
+      </article>
+      <article
+        class="bg-white w-4/5 lg:w-custom mb-10 lg:px-4 px-6 py-10 text-center text-primary-dark rounded-lg"
+      >
+        <h5 class="font-bold text-base">Master</h5>
+        <h2 class="flex justify-center pb-4 font-bold border-b border-gray-200">
+          <span class="text-3xl mt-6 mr-1">$</span
+          ><span class="text-6xl">79.99</span>
+        </h2>
+        <ul class="text-sm font-bold">
+          <li class="pt-4 pb-4 border-b border-gray-200">2 TB Storage</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">10 Users Allowed</li>
+          <li class="pt-4 pb-4 border-b border-gray-200">Send up to 20 GB</li>
+        </ul>
+        <button type= "submit" id="goldBtn"
+        class=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-md"
+        style="background-image:linear-gradient(90deg, #a3a8f0 0%, #696fdd 100%);"
+      >
+      Subscribe now !
+        </button>
+      </article>
+    </section>
+    {%endif %}
   </body>
 </html>
